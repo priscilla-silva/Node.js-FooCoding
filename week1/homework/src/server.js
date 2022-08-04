@@ -1,3 +1,4 @@
+
 'use strict';
 
 const http = require('http');
@@ -9,7 +10,26 @@ function createServer(port) {
   let state = 10;
 
   const server = http.createServer((request, response) => {
-    // TODO: Write your homework code here
+    response.setHeader('Content-Type', 'application/json');
+    switch (request.url) {
+      case '/state':
+        response.end(JSON.stringify({ state: state}));
+        break;
+      case '/add':
+        response.end(JSON.stringify({ state: state += 1 }));
+        break;
+      case '/subtract':
+        response.end(JSON.stringify({ state: state -= 1 }));
+        break;
+      case '/reset':
+        response.end(JSON.stringify({ state: state = 10 }));
+        break;
+      default:
+        const error = 'Not found';
+        response.statusCode = 404;
+        response.end(JSON.stringify({ error }));
+        break;
+    }
   });
 
   return server;
