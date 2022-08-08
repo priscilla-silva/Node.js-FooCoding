@@ -1,3 +1,75 @@
 'use strict';
 
-// TODO: Write the homework code in this file
+// const http = require('http');
+// const fs = require('fs');
+// const DEFAULT_ENCODING = 'utf8';
+// let arg = process.argv[2];
+// let todolist = data ? JSON.parse(data) = []
+
+// const server = http.createServer(function (req, res) {
+//   fs.readFile('todolist.txt', (err, data) => {
+//     res.writeHead(200, {'Content-Type', 'application/json'});
+//     res.write(data);
+//     return res.end();
+
+//     switch (arg) {
+//       case 'add': {
+//         todolist.push(args[1]);
+//         break;
+//       }
+//       default: {
+//         console.log('Help');
+//         break;
+//       }
+  
+// }
+//   });
+//   return server;
+// }).listen(3000);
+
+// const http = require('http');
+// const fs = require('fs');
+// const DEFAULT_ENCODING = 'utf8';
+// let arg = process.argv[2];
+// //let todolist = data ? JSON.parse(data) = []
+
+// const server = http.createServer((req, res) => {
+  
+//   fs.readFile('todolist.txt', (err, data) => {
+//     res.setHeader('Content-Type', 'application/JSON')
+
+//     switch (arg) {
+//       case 'add':
+//         todolist.push(arg[1]);
+//         break;
+      
+//       default:
+//         console.log('Help');
+//         break;
+//     }
+
+//     if (err) {
+//       console.log(err);
+//       res.end();
+//     } else {
+//       red.end(data);
+//   }
+// })
+
+// });
+
+// server.listen(3000, 'localhost', () => {
+//   console.log('Listenig on port 3000')
+// });
+
+const fs = require('fs');
+const encoding = 'utf8';
+const list = 'todolist.txt'
+let cmd = process.argv.splice[3];
+let arg = process.argv[2];
+
+fs.appendFile('todolist.txt', 'Shower Iroko', (err) => {
+  if (err) throw err;
+  console.log('saved');
+})
+
