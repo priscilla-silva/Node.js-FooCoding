@@ -64,21 +64,35 @@
 
 const fs = require('fs');
 const encoding = 'utf8';
-const list = 'todolist.txt'
-let cmd = process.argv.splice[3];
-let arg = process.argv[2];
+const todolist = 'todolist.txt'
+let args = process.argv.slice(3);
+let cmd = process.argv[2];
+//let task = JSON.stringify(data)
 
-// const welcomeScreen () => {
-  
-// }  
-
-fs.readFile('help.txt', encoding, (err, data) => {
+const helpScreen = () => {
+  fs.readFile('help.txt', encoding, (err, data) => {
   if (err) throw err;
   console.log(data);
 })
+}  
 
-// fs.appendFile('todolist.txt', cmd , (err) => {
-//   if (err) throw err;
-//   console.log('saved');
-// })
+
+const addTask = () => {
+  fs.writeFile('todolist.txt', args.join(`\n \n`), (err, todolist) => { //find out how new line works
+    if (err) throw err;
+    console.log('saved')
+})
+}
+
+switch (cmd) {
+  case 'add':
+    addTask();
+    break;
+  
+  default:
+    helpScreen();
+    break;
+}
+
+
 
