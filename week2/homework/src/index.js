@@ -76,17 +76,43 @@ const helpScreen = () => {
 })
 }  
 
+const showAll = () => {
+  fs.readFile(todolist, encoding, (err, data) => {
+    if (err) {
+      throw err;
+    } else if (data.length !== 0) {
+      console.log(data);
+    } else {
+      console.log('Hooray! No pending tasks.');
+  }
+})
+} 
 
 const addTask = () => {
-  fs.appendFile('todolist.txt', args.join(' ')+(' ')+('\n'), (err) => { 
+  fs.appendFile(todolist, args.join(' ')+(' ')+('\n'), (err) => { 
     if (err) throw err;
-      console.log('saved')
+      console.log('Task saved.')
 })
 }
 
+const clearAll = () => {
+  fs.truncate(todolist, 0, (err) => {
+    if (err) throw err;
+    console.log('All clear')
+  })
+}
+
 switch (cmd) {
+  case 'list':
+    showAll();
+    break;
+
   case 'add':
     addTask();
+    break;
+  
+  case 'reset':
+    clearAll();
     break;
   
   default:
