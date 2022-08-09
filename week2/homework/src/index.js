@@ -68,8 +68,17 @@ const list = 'todolist.txt'
 let cmd = process.argv.splice[3];
 let arg = process.argv[2];
 
-fs.appendFile('todolist.txt', 'Shower Iroko', (err) => {
+// const welcomeScreen () => {
+  
+// }  
+
+fs.readFile('help.txt', encoding, (err, data) => {
   if (err) throw err;
-  console.log('saved');
+  console.log(data);
 })
+
+// fs.appendFile('todolist.txt', cmd , (err) => {
+//   if (err) throw err;
+//   console.log('saved');
+// })
 

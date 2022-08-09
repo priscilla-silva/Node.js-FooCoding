@@ -1,1 +1,9 @@
 WELCOME TO YOUR TO-DO LIST
+
+Use the following commands:
+
+list            Show current tasks
+add [task]      Add task 
+remove [task]   Remove task
+reset           Removes all tasks
+help            Show this menu again
