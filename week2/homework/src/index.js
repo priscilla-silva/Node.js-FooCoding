@@ -78,9 +78,9 @@ const helpScreen = () => {
 
 
 const addTask = () => {
-  fs.writeFile('todolist.txt', args.join(`\n \n`), (err, todolist) => { //find out how new line works
+  fs.appendFile('todolist.txt', args.join(' ')+(' ')+('\n'), (err) => { 
     if (err) throw err;
-    console.log('saved')
+      console.log('saved')
 })
 }
 
