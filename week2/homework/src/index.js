@@ -4,10 +4,13 @@ const fs = require('fs');
 const encoding = 'utf8';
 const todolist = 'todolist.txt'
 let args = process.argv.slice(3);
-let rmvArgs = process.argv.splice(3)
+let rmvArgs = process.argv.slice(2)
 let cmd = process.argv[2];
 let task = args.join(' ') + (' ') + ('\n');
 let data = []
+let taskObject = Object.entries(data)
+
+
 
 const helpScreen = () => {
   fs.readFile('help.txt', encoding, (err, data) => {
@@ -29,14 +32,19 @@ const showAll = () => {
 } 
 
 const addTask = () => {
-  fs.appendFile(todolist, task, (err, data) => { 
+  fs.appendFile(todolist, JSON.parse(JSON.stringify(task)), (err, data) => {
     if (err) throw err;
-      console.log('Task saved.')
-})
+    console.log('Saved task.')
+  })
 }
 
+
 const removeTask = () => {
-  fs.readFile(todolist, )
+  fs.unlink(todolist, (err,data) => {
+    if (err) throw err;
+    console.log('removed')
+  })
+
 }
 
 const clearAll = () => {
