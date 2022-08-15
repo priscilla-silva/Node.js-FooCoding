@@ -1,0 +1,4 @@
+REST - REpresentational State Transer - Standard between computer systems
+Make it RESTful
+
+svelte

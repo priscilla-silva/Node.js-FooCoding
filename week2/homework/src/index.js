@@ -2,57 +2,53 @@
 
 const fs = require('fs');
 const encoding = 'utf8';
-const todolist = 'todolist.txt'
+const todolist = 'todolist.json';
 let args = process.argv.slice(3);
-let rmvArgs = process.argv.slice(2)
 let cmd = process.argv[2];
-let task = args.join(' ') + (' ') + ('\n');
-let data = []
-let taskObject = Object.entries(data)
-
-
+let task = args.join(' ');
 
 const helpScreen = () => {
   fs.readFile('help.txt', encoding, (err, data) => {
-  if (err) throw err;
-  console.log(data);
-})
-}  
+    if (err) throw err;
+    console.log(data);
+  });
+};
 
 const showAll = () => {
   fs.readFile(todolist, encoding, (err, data) => {
     if (err) {
       throw err;
-    } else if (data.length !== 0) {
+    }
+    else if (data.length !== 0) {
       console.log(data);
-    } else {
+    }
+    else {
       console.log('Hooray! No pending tasks.');
-  }
-})
-} 
+    }
+  });
+};
 
 const addTask = () => {
-  fs.appendFile(todolist, JSON.parse(JSON.stringify(task)), (err, data) => {
+  fs.appendFile(todolist, JSON.stringify(task), (err, data) => {
     if (err) throw err;
-    console.log('Saved task.')
-  })
-}
-
+    console.log('Saved task.');
+  });
+};
 
 const removeTask = () => {
-  fs.unlink(todolist, (err,data) => {
+  fs.readFile(todolist, encoding, (err, data) => {
     if (err) throw err;
-    console.log('removed')
-  })
-
-}
+    console.log(data.length);
+    console.log('removed');
+  });
+};
 
 const clearAll = () => {
   fs.truncate(todolist, 0, (err) => {
     if (err) throw err;
-    console.log('All clear')
-  })
-}
+    console.log('All clear');
+  });
+};
 
 switch (cmd) {
   case 'list':
@@ -62,19 +58,16 @@ switch (cmd) {
   case 'add':
     addTask();
     break;
-  
+
   case 'remove':
     removeTask();
     break;
-  
+
   case 'reset':
     clearAll();
     break;
-  
+
   default:
     helpScreen();
     break;
 }
-
-
-
