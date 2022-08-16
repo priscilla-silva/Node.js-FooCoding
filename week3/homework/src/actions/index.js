@@ -4,9 +4,9 @@
 module.exports = {
   createTodo: require('./createTodo'),
   readTodos:  require('./readTodos'),
-  readTodo:  require('./readTodo'),
   updateTodo: require('./updateTodo'),
   deleteTodo: require('./deleteTodo'),
+  readTodo: require('./readTodo'),
   clearTodos: require('./clearTodos'),
-  patchTodo: require('./patchTodo')
+  patchTodo:  require('./patchTodo')
 };

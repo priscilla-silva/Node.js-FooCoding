@@ -8,8 +8,8 @@ async function deserializeTodo(request) {
   if (todo.description != null)
     todo.description = todo.description.trim();
 
-  // if (todo.description == null || todo.description.length === 0)
-    // throw new Error('description not set');
+  if (todo.description == null || todo.description.length === 0)
+    throw new Error('description not set');
 
   return todo;
 };

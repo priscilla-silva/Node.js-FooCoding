@@ -1,8 +1,7 @@
 'use strict';
 
 const fs   = require('fs');
-// const uuid = require('uuid/v4');
-const { v4: uuid } = require('uuid');
+const uuid = require('uuid/v4');
 
 const DEFAULT_ENCODING = 'utf8';
 
@@ -17,11 +16,13 @@ class Todo {
     const todo = {
       id:   uuid(),
       done: false,
+
       description
     };
-    // todos.push(todo);
 
-    await this._save(todo);
+    todos.push(todo);
+
+    await this._save(todos);
 
     return todo;
   }
@@ -32,7 +33,6 @@ class Todo {
         if (error)
           return resolve([]);
 
-        // console.log(data);
         return resolve(JSON.parse(data));
       });
     });
@@ -41,7 +41,6 @@ class Todo {
   async clear() {
     await this._save([]);
   }
-
   async patchTodo(id, description, done) {
     const todos = await this.read();
 
@@ -73,7 +72,12 @@ class Todo {
   async update(id, description) {
     const todos = await this.read();
 
-    const todo = this.getTodo(todos, id);
+    const todo = todos.find(t => t.id === id);
+    if (todo == null) {
+      const error = new Error(`To-do with ID ${id} does not exist`);
+      error.code = 'not-found';
+      throw error;
+    }
 
     todo.description = description;
 
